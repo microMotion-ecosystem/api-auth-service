@@ -15,7 +15,7 @@ const uri = `mongodb+srv://${process.env.DB_USERNAME}:${encodedPassword}@${proce
 @Module({
   imports: [MongooseModule.forRoot(uri, mongooseConnectionOptions)],
   controllers: [],
-  providers: [,
+  providers: [],
 })
 export class MongodbModule {
 }

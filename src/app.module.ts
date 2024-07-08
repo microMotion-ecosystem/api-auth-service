@@ -24,8 +24,8 @@ import { UsersModule } from './models/users/users.module';
     AuthService,
     JwtStrategy,
     WpIntegrationService,
-    JwtServic,
-  , // Add UsersService here
+    JwtService,
+  ], // Add UsersService here
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
