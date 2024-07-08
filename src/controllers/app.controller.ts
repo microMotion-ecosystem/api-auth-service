@@ -7,13 +7,13 @@ import {
   Res,
   Request,
   UseGuards,
+  HttpStatus,
 } from '@nestjs/common';
 import { AppService } from '../services/app.service';
-import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../core/jwt-auth-guard/jwt-auth.guard';
-import { AuthService } from '../models/auth/auth.service';
-import { UsersService } from '../models/users/users.service';
+import { AuthService } from '../modules/auth/auth.service';
+import { UsersService } from '../modules/users/users.service';
 import { AuthGuard } from '@nestjs/passport';
+import { Response } from 'express';
 
 @Controller()
 export class AppController {
@@ -24,40 +24,28 @@ export class AppController {
   ) {}
 
   @Get()
-  // @ApiBearerAuth('access-token')
-  // @ApiOperation({summary: 'Check if the API is working'})
-  // @ApiResponse({status: 200, description: 'API is working correctly.'})
   isWorking(): string {
     return this.appService.isWorking();
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Get('api/v1/demo')
-  @ApiBearerAuth('access-token')
-  @ApiOperation({ summary: 'Demo route' })
-  @ApiResponse({ status: 200, description: 'Returns a demo text.' })
-  demo(): string {
-    return 'demo';
-  }
-
-  /**
-   * Logs in a user.
-   *
-   * @param {Object} req - The request object.
-   * @param {Object} req.user - The user object.
-   * @returns {Promise} - A promise resolving to the result of the login operation.
-   */
+  @Post('api/login')
   @UseGuards(AuthGuard('local'))
-  @Post('login')
   async login(@Request() req) {
     return this.authService.login(req.user);
   }
 
-  @Post('register')
-  async createUser(@Body() user: any) {
-    console.log('user', user);
-    const { username, password, email } = user;
-    return await this.usersService.create({ username, password, email });
+  @Post('api/register')
+  async createUser(@Body() user: any, @Res() response: Response) {
+    try {
+      const createdUser = await this.usersService.create(user);
+      return response
+        .status(HttpStatus.CREATED)
+        .json({ message: 'User created successfully', user: createdUser });
+    } catch (error) {
+      return response
+        .status(error?.status || HttpStatus.INTERNAL_SERVER_ERROR)
+        .json({ message: 'Internal server error', error: error.message });
+    }
   }
 
   @Get('auth/google')
