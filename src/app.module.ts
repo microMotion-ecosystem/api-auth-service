@@ -1,4 +1,4 @@
-import {MiddlewareConsumer, Module, RequestMethod} from '@nestjs/common';
+import {MiddlewareConsumer, Module, NestModule, RequestMethod} from '@nestjs/common';
 import {AppController} from './controllers/app.controller';
 import {AppService} from './services/app.service';
 import {MongodbModule} from './config/mongodb.module';
@@ -20,7 +20,7 @@ import {JwtStrategy} from "./core/jwt-auth-guard/jwt.strategy";
         JwtStrategy
     ],
 })
-export class AppModule {
+export class AppModule implements NestModule{
     configure(consumer: MiddlewareConsumer) {
         consumer
             .apply(CheckHeaderMiddleware /* , otherMiddleWare */)
@@ -32,5 +32,4 @@ export class AppModule {
 
     }
 
-    //ayhaga kjahsdkjhasdhas
 }
