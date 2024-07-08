@@ -20,15 +20,15 @@ import {JwtStrategy} from "./core/jwt-auth-guard/jwt.strategy";
         JwtStrategy
     ],
 })
-export class AppModule implements NestModule{
+export class AppModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
         consumer
             .apply(CheckHeaderMiddleware /* , otherMiddleWare */)
             .forRoutes({path: '*', method: RequestMethod.ALL} /* OR AppController */);
-      /*  // to implement other middleware:
-       consumer
-            .apply(NewMiddleware)
-            .forRoutes({ path: 'demo', method: RequestMethod.GET });*/
+        /*  // to implement other middleware:
+         consumer
+              .apply(NewMiddleware)
+              .forRoutes({ path: 'demo', method: RequestMethod.GET });*/
 
     }
 
