@@ -1,14 +1,30 @@
-GET http://localhost:5502/
+GET http://localhost:5501/
 Accept: application/json
-Authorization: Bearer <your-access-token>
-Platform: yu2ahel
 
 
 ###
 
-GET http://localhost:5502/demo
+POST http://localhost:5501/api/register
 Accept: application/json
-Authorization: Bearer <your-access-token>
-Platform: yu2ahel
+X-Platform: yu2ahel
+Content-Type: application/json
+
+{
+  "email": "striker.h@gmail.com",
+  "password": "123456",
+  "username": "striker.h@gmail.com"
+}
+
 
 ###
+
+POST http://localhost:5501/api/login
+Accept: application/json
+X-Platform: yu2ahel
+Content-Type: application/json
+
+{
+  "email": "striker.h@gmail.com",
+  "password": "123456",
+  "username": "striker.h@gmail.com"
+}
