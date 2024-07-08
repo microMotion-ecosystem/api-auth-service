@@ -24,7 +24,7 @@ export class AppController {
   ) {}
 
   @Get()
-  @ApiBearerAuth('access-token')
+  // @ApiBearerAuth('access-token')
   // @ApiOperation({summary: 'Check if the API is working'})
   // @ApiResponse({status: 200, description: 'API is working correctly.'})
   isWorking(): string {
@@ -32,7 +32,7 @@ export class AppController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('demo')
+  @Get('api/v1/demo')
   @ApiBearerAuth('access-token')
   @ApiOperation({ summary: 'Demo route' })
   @ApiResponse({ status: 200, description: 'Returns a demo text.' })
