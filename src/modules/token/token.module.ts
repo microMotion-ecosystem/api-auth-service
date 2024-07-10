@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TokenService } from './token.service';
-import { User, UserSchema } from '../users/user.schema';
+import { User } from '../users/user.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TokenSchema } from './token.schema';
 

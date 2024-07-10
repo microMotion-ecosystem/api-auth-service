@@ -9,7 +9,6 @@ import {
   UseGuards,
   HttpStatus,
 } from '@nestjs/common';
-import { AppService } from '../services/app.service';
 import { AuthService } from '../modules/auth/auth.service';
 import { UsersService } from '../modules/users/users.service';
 import { AuthGuard } from '@nestjs/passport';
@@ -18,14 +17,17 @@ import { Response } from 'express';
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
     private authService: AuthService,
     private readonly usersService: UsersService,
   ) {}
 
   @Get()
   isWorking(): string {
-    return this.appService.isWorking();
+    return `App is Working 
+       ${process.env.APP_NAME} (${process.env.APP_ENV}) ${process.env.APP_VERSION} 
+        ${new Date().toDateString()} ${new Date().toTimeString()}.
+        Please check the API documentation at "/api-docs" OR "/api-docs-json"
+       `;
   }
 
   @Post('api/login')
@@ -48,13 +50,14 @@ export class AppController {
     }
   }
 
-  @Get('auth/google')
+  @Get('google')
   @UseGuards(AuthGuard('google'))
   googleLogin() {
+    // no code needed because Passport.js handles the redirect
     // initiates the Google OAuth2 login flow
   }
 
-  @Get('auth/google/callback')
+  @Get('google/callback')
   @UseGuards(AuthGuard('google'))
   googleLoginCallback(@Req() req: any, @Res() res: any) {
     console.log('user', req.user);

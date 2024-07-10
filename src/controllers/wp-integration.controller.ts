@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { WpIntegrationService } from './wp-integration.service';
+import { WpIntegrationService } from '../modules/wp-integration/wp-integration.service';
 
 @Controller('wp')
 export class WpIntegrationController {

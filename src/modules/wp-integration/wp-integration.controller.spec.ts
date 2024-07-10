@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { WpIntegrationController } from './wp-integration.controller';
+import { WpIntegrationController } from '../../controllers/wp-integration.controller';
 
 describe('WpIntegrationController', () => {
   let controller: WpIntegrationController;
