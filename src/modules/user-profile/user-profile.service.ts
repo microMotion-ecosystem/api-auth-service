@@ -8,6 +8,7 @@ import { UpdateUserProfileDto } from '../../dto/user-profile/update-user-profile
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserProfile } from '../../models/userProfile.interface';
+import { Helper } from '../../helpers/helper';
 
 @Injectable()
 export class UserProfileService {
@@ -16,17 +17,20 @@ export class UserProfileService {
   ) {}
 
   async create(createUserProfileDto: CreateUserProfileDto) {
-    const additionalData = { ...createUserProfileDto.additionalData };
+    const additionalData = Helper.toLowerCaseKeys(
+      createUserProfileDto.additionalData,
+    );
+
     // i want to remove additionalData from the object createUserProfileDto
     delete createUserProfileDto.additionalData;
 
-    const newUser = new this.userProfileModel({
-      ...createUserProfileDto,
-      ...additionalData,
-      createdAt: new Date(),
-    });
     try {
-      return await newUser.save();
+      const newUserProfile = new this.userProfileModel({
+        ...createUserProfileDto,
+        ...additionalData,
+        createdAt: new Date(),
+      });
+      return await newUserProfile.save();
     } catch (error) {
       // if duplicate key error handel here
       if (error.code === 11000) {

@@ -13,7 +13,6 @@ import { UsersService } from '../modules/users/users.service';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 import { CreateUserDto } from '../dto/auth/create-user.dto';
-import { UserProfile } from '../models/userProfile.interface';
 
 @Controller('api/auth')
 export class AuthController {
@@ -41,7 +40,7 @@ export class AuthController {
       });
       return response
         .status(HttpStatus.CREATED)
-        .json({ message: 'User created successfully', user: createdUser });
+        .json({ message: 'User created successfully', data: createdUser });
     } catch (error) {
       return response
         .status(error?.status || HttpStatus.INTERNAL_SERVER_ERROR)

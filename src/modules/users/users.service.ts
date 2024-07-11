@@ -32,6 +32,18 @@ export class UsersService {
   async create(user: User): Promise<any> {
     // console.log('user', user);
     // create user profile
+    const validateUser = await this.findOne(user.email);
+    if (validateUser) {
+      throw new ConflictException('User already exists');
+    }
+    const validateUserProfile = await this.userProfile.findOneBy(
+      'email',
+      user.email,
+    );
+    if (validateUserProfile) {
+      throw new ConflictException('User profile already exists');
+    }
+
     const profile = await this.userProfile.create({
       ...user.userProfileData,
       email: user.email,
@@ -51,16 +63,11 @@ export class UsersService {
       createdAt: new Date(),
       strategyType: 'local',
     });
-    const newUserSaved = await newUser.save().catch(async (error) => {
+    const newUserSaved = await newUser.save();
+    if (!newUserSaved) {
       await this.userProfile.hardRemove(profile._id.toString());
-      // if duplicate key error handel here
-      if (error.code === 11000) {
-        throw new ConflictException('User already exists');
-      }
-      console.log('error', error);
-      throw error;
-    });
-    return { newUserSaved, profile };
+    }
+    return { user: newUserSaved.toObject(), userProfile: profile.toObject() };
   }
 
   /*  async createUser(userName: string, password: string): Promise<User> {
