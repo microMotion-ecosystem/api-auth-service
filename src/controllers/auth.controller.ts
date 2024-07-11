@@ -13,7 +13,7 @@ import { UsersService } from '../modules/users/users.service';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 import { CreateUserDto } from '../dto/auth/create-user.dto';
-import { User } from '../modules/users/user.schema';
+import { UserProfile } from '../models/userProfile.interface';
 
 @Controller('api/auth')
 export class AuthController {
@@ -33,10 +33,11 @@ export class AuthController {
     try {
       const createdUser = await this.usersService.create({
         email: user.email,
-        username: user.email,
+        userName: user.userName,
         fullName: user.fullName,
         password: user.password,
         strategyType: 'local',
+        userProfileData: user.userProfileData,
       });
       return response
         .status(HttpStatus.CREATED)

@@ -44,7 +44,7 @@ export class AppController {
     // handles the Google OAuth2 callback
     const jwt: string = req.user?.accessToken;
     if (jwt) {
-      this.authService.login({ username: req.user.email });
+      this.authService.login({ userName: req.user.email });
     }
 
     // res.redirect('http://localhost:3000/login/success/' + jwt);

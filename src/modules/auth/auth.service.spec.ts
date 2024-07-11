@@ -19,7 +19,7 @@ describe('AuthService', () => {
   it('should return jwt token when login is successful', async () => {
     // Arrange
     const expectedJwtToken = 'jwtToken';
-    const loginDto = { username: 'test', password: 'password' };
+    const loginDto = { userName: 'test', password: 'password' };
     jest.spyOn(service, 'login').mockImplementation(async () => {
       return { access_token: expectedJwtToken };
     });

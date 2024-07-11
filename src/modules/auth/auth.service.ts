@@ -12,21 +12,15 @@ export class AuthService {
     private tokenService: TokenService,
   ) {}
 
-  async validateUser(email: string, pass: string): Promise<User> {
-    const user = await this.usersService.validateUser(email, pass);
-    if (user) {
-      return user;
-    }
-    return null;
-  }
 
-  async findOneBy(field: string, value: string): Promise<any> {
-    const user = await this.usersService.findOneBy(field, value);
-    if (user) {
-      return user;
-    }
-    return null;
-  }
+
+  // async findOneBy(field: string, value: string): Promise<any> {
+  //   const user = await this.usersService.findOneBy(field, value);
+  //   if (user) {
+  //     return user;
+  //   }
+  //   return null;
+  // }
 
   async login(user: any) {
     const payload = { email: user.email, sub: user._id.toString() };

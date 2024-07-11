@@ -6,10 +6,24 @@ X-Platform: yu2ahel
 Content-Type: application/json
 
 {
-  "email": "striker.h+612@gmail.com",
-  "username": "striker.h+612@gmail.com",
+  "email": "werwerwer12@gmail.com",
+  "userName": "werwerwe113",
   "password": "123456",
-  "fullName": "HazemSafwat"
+  "fullName": "Hazem nabil Safwat",
+  "userProfileData": {
+    "additionalData": {
+      "Children": [
+        {
+          "name": "yaseen",
+          "age": "20"
+        },
+        {
+          "name": "abdo",
+          "age": "18"
+        }
+      ]
+    }
+  }
 }
 
 
@@ -17,15 +31,17 @@ Content-Type: application/json
 
 # Login
 # ../src/controllers/auth.controller.ts
-POST http://localhost:5501/api/login
+# userName can be username or email
+#  "username": "striker.h+73@gmail.com" (Email)
+#  "username": "striker73", (UserName)
+POST http://localhost:5501/api/auth/login
 Accept: application/json
 X-Platform: yu2ahel
 Content-Type: application/json
 
 {
-  "email": "striker.h@gmail.com",
-  "password": "123456",
-  "username": "striker.h@gmail.com"
+  "username": "striker73",
+  "password": "123456"
 }
 
 ###

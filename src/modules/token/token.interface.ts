@@ -1,6 +1,6 @@
 export interface Token {
   id?: string;
-  username: string;
+  userName: string;
   password: string;
   email: string;
 }

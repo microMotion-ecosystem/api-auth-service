@@ -12,8 +12,13 @@ export class UsersService {
     private userProfile: UserProfileService,
   ) {}
 
-  async findOne(email: string): Promise<User | undefined> {
-    const user = await this.userModel.findOne({ email }).lean().exec();
+  async findOne(userNameOrEmail: string): Promise<User | undefined> {
+    const user = await this.userModel
+      .findOne({
+        $or: [{ userName: userNameOrEmail }, { email: userNameOrEmail }],
+      })
+      .lean()
+      .exec();
     console.log('user1', user); // Log the result for inspection
     return user;
   }
@@ -25,11 +30,13 @@ export class UsersService {
   }
 
   async create(user: User): Promise<any> {
-    console.log('user', user);
+    // console.log('user', user);
     // create user profile
     const profile = await this.userProfile.create({
+      ...user.userProfileData,
       email: user.email,
       fullName: user.fullName,
+      additionalData: user.userProfileData?.additionalData,
     });
     if (!profile) {
       throw new ConflictException('User profile creation failed');
@@ -56,13 +63,13 @@ export class UsersService {
     return { newUserSaved, profile };
   }
 
-  /*  async createUser(username: string, password: string): Promise<User> {
-      const newUser = new this.userModel({ username, password });
+  /*  async createUser(userName: string, password: string): Promise<User> {
+      const newUser = new this.userModel({ userName, password });
       return newUser.save();
     }*/
 
-  async validateUser(email: string, pass: string): Promise<User> {
-    const user = await this.findOne(email);
+  async validateUser(userNameOrEmail: string, pass: string): Promise<User> {
+    const user = await this.findOne(userNameOrEmail);
     if (user && (await bcrypt.compare(pass, user.password))) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;
