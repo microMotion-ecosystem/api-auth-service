@@ -30,26 +30,6 @@ export class AppController {
        `;
   }
 
-  @Post('api/login')
-  @UseGuards(AuthGuard('local'))
-  async login(@Request() req) {
-    return this.authService.login(req.user);
-  }
-
-  @Post('api/register')
-  async createUser(@Body() user: any, @Res() response: Response) {
-    try {
-      const createdUser = await this.usersService.create(user);
-      return response
-        .status(HttpStatus.CREATED)
-        .json({ message: 'User created successfully', user: createdUser });
-    } catch (error) {
-      return response
-        .status(error?.status || HttpStatus.INTERNAL_SERVER_ERROR)
-        .json({ message: 'Internal server error', error: error.message });
-    }
-  }
-
   @Get('google')
   @UseGuards(AuthGuard('google'))
   googleLogin() {

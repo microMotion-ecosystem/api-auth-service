@@ -1,0 +1,79 @@
+
+## User Profile REST API
+
+### Find UserProfile
+
+# Fetching All User Profiles with Pagination
+GET http://localhost:5501/api/user-profile?page=1&limit=10
+X-Platform: yu2ahel
+
+###
+
+# Fetching All User Profiles with Pagination
+GET http://localhost:5501/api/user-profile/show-deleted?page=1&limit=10
+X-Platform: yu2ahel
+
+###
+
+
+# Fetching All User Profiles with Pagination
+GET http://localhost:5501/api/user-profile/filter?page=1&limit=10
+X-Platform: yu2ahel
+
+###
+
+# Find UserProfile By ID
+GET http://localhost:5501/api/user-profile/668e9f03cadafcda2a0110bc
+Content-Type: application/json
+X-Platform: yu2ahel
+
+
+###  Create Update Delete User Profile
+
+# Create User Profile by ID
+POST http://localhost:5501/api/user-profile
+Content-Type: application/json
+X-Platform: yu2ahel
+
+{
+  "fullName": "asdasd11",
+  "email": "demoe2@xample.com",
+  "mobile": "12345678902",
+  "gender": "male",
+  "metadata": {
+    "dob": "1990-01-01"
+  }
+}
+
+###
+
+# Update UserProfile
+# the main properties put outside the additionalData
+# any additional properties put inside the additionalData
+PATCH http://localhost:5501/api/user-profile/668e9f03cadafcda2a0110bc
+Content-Type: application/json
+X-Platform: yu2ahel
+
+{
+  "additionalData": {
+    "fullName": "any Name",
+    "metadata": "1990-01-01"
+  }
+}
+
+
+###
+
+# Delete UserProfile
+DELETE http://localhost:5501/api/user-profile/668f11db19d0c9af74399500
+Content-Type: application/json
+X-Platform: yu2ahel
+
+
+###
+
+# Hard Remove User Profile
+DELETE http://localhost:5501/api/user-profile/668f11db19d0c9af74399500/hard
+Content-Type: application/json
+X-Platform: yu2ahel
+

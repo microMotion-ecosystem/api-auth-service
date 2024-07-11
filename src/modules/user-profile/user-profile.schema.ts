@@ -6,20 +6,18 @@ const UserProfileSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    emails: {
-      type: Array<string>,
-    },
-    mobiles: {
-      type: Array<string>,
-    },
-    mainEmail: {
+    email: {
       type: String,
+      unique: true,
     },
-    mainMobile: {
+    mobile: {
       type: String,
     },
     gender: {
       type: String,
+    },
+    dob: {
+      type: Date,
     },
   },
   { strict: false },

@@ -6,4 +6,6 @@ export interface User {
   fullName?: string;
   google?: any;
   [key: string]: any;
+  userProfileId?: string;
+  strategyType?: string;
 }

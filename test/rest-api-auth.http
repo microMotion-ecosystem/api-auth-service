@@ -1,26 +1,22 @@
-
-
-GET http://localhost:5501/
-Accept: application/json
-
-
-###
-
+# Register
+# ../src/controllers/auth.controller.ts
 POST http://localhost:5501/api/auth/register
 Accept: application/json
 X-Platform: yu2ahel
 Content-Type: application/json
 
 {
-  "email": "striker.h+6@gmail.com",
-  "username": "striker.h+6@gmail.com",
+  "email": "striker.h+612@gmail.com",
+  "username": "striker.h+612@gmail.com",
   "password": "123456",
-  "fullName": "Hazem Safwat"
+  "fullName": "HazemSafwat"
 }
 
 
 ###
 
+# Login
+# ../src/controllers/auth.controller.ts
 POST http://localhost:5501/api/login
 Accept: application/json
 X-Platform: yu2ahel

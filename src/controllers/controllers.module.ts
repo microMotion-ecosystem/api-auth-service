@@ -4,7 +4,7 @@ import { AuthModule } from '../modules/auth/auth.module';
 import { UsersModule } from '../modules/users/users.module';
 import { WpIntegrationController } from './wp-integration.controller';
 import { WpIntegrationModule } from '../modules/wp-integration/wp-integration.module';
-import { UsersController } from './users.controller';
+import { AuthController } from './auth.controller';
 import { UserProfileController } from './user-profile.controller';
 import { UserProfileModule } from '../modules/user-profile/user-profile.module';
 
@@ -13,7 +13,7 @@ import { UserProfileModule } from '../modules/user-profile/user-profile.module';
   controllers: [
     AppController,
     WpIntegrationController,
-    UsersController,
+    AuthController,
     UserProfileController,
   ],
   providers: [],
