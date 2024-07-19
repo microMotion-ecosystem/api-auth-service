@@ -14,6 +14,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { JwtConfigModule } from './config/jwt-config.module';
 import { WpIntegrationModule } from './modules/wp-integration/wp-integration.module';
 import { UserProfileModule } from './modules/user-profile/user-profile.module';
+import { RabbitMqConfigModule } from './config/rabbitmq-config.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { UserProfileModule } from './modules/user-profile/user-profile.module';
     TokenModule,
     ControllersModule,
     JwtConfigModule,
+    RabbitMqConfigModule,
 
     AuthModule,
     ControllersModule,
@@ -31,15 +33,7 @@ import { UserProfileModule } from './modules/user-profile/user-profile.module';
   ],
   exports: [],
   controllers: [],
-  providers: [
-    // AppService,
-    // AuthService,
-    // JwtStrategy,
-    // WpIntegrationService,
-    // JwtService,
-    // GoogleStrategy,
-    // LocalStrategy,
-  ], // Add UsersService here
+  providers: [],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

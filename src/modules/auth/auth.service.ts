@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { TokenService } from '../token/token.service';
-import { User } from '../../models/user.interface';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class AuthService {
@@ -10,9 +10,11 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
     private tokenService: TokenService,
-  ) {}
-
-
+    @Inject('RABBITMQ_SERVICE') private readonly client: ClientProxy,
+  ) {
+    console.log('AppService constructor');
+    this.client.emit<any>('hello-message', 'ay haga');
+  }
 
   // async findOneBy(field: string, value: string): Promise<any> {
   //   const user = await this.usersService.findOneBy(field, value);

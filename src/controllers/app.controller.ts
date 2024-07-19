@@ -1,18 +1,14 @@
 import {
-  Body,
   Controller,
   Get,
-  Post,
   Req,
   Res,
-  Request,
   UseGuards,
-  HttpStatus,
 } from '@nestjs/common';
 import { AuthService } from '../modules/auth/auth.service';
 import { UsersService } from '../modules/users/users.service';
 import { AuthGuard } from '@nestjs/passport';
-import { Response } from 'express';
+import { MessagePattern } from "@nestjs/microservices";
 
 @Controller()
 export class AppController {
@@ -49,5 +45,11 @@ export class AppController {
 
     // res.redirect('http://localhost:3000/login/success/' + jwt);
     // else res.redirect('http://localhost:3000/login/failure');
+  }
+
+  @MessagePattern('hello-message')
+  getHelloMessage(data: string) {
+    console.log('Received message:', data);
+    // Handle the message
   }
 }
