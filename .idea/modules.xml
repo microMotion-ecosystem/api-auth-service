@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/api-exams.iml" filepath="$PROJECT_DIR$/.idea/api-exams.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../new-yu2ahel/collection/.idea/collection.iml" filepath="$PROJECT_DIR$/../new-yu2ahel/collection/.idea/collection.iml" />
     </modules>
   </component>
 </project>
