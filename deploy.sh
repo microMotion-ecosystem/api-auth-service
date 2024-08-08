@@ -9,7 +9,7 @@ then
 fi
 
 git push
-ssh pinkstaging2 "cd /var/www/node_apps/api-auth-service2 && git pull origin master  && npm install && npm run build && /home/ubuntu/.nvm/versions/node/v21.6.1/bin/pm2 restart <APP_NAME>"
+ssh pinkstaging2 "cd /var/www/node_apps/api-auth-service2 && git pull origin master  && npm install && npm run build && /home/ubuntu/.nvm/versions/node/v21.6.1/bin/pm2 restart auth_service"
 
 
 
