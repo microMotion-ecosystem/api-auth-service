@@ -3,6 +3,7 @@ import { HttpService } from '@nestjs/axios';
 import { map } from 'rxjs/operators';
 import * as process from 'node:process';
 
+
 @Injectable()
 export class WpIntegrationService {
   constructor(private httpService: HttpService) {}
@@ -20,4 +21,6 @@ export class WpIntegrationService {
       .post(process.env.WORDPRESS_URL + '/wp-json/wp/v2/users', user)
       .pipe(map((response) => response.data));
   }
+
+
 }

@@ -1,4 +1,4 @@
-import { Global, INestApplication, Module } from "@nestjs/common";
+import { Global, INestApplication, Module } from '@nestjs/common';
 import {
   ClientsModule,
   MicroserviceOptions,
@@ -10,7 +10,7 @@ import {
   imports: [
     ClientsModule.register([
       {
-        name: 'RABBITMQ_SERVICE',
+        name: 'AUTH_SERVICE',
         transport: Transport.RMQ,
 
         options: {

@@ -10,7 +10,7 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
     private tokenService: TokenService,
-    @Inject('RABBITMQ_SERVICE') private readonly client: ClientProxy,
+    @Inject('AUTH_SERVICE') private readonly client: ClientProxy,
   ) {
     console.log('AppService constructor');
     this.client.emit<any>('hello-message', 'ay haga');
